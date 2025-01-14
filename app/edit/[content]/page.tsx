@@ -2,6 +2,9 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import ContentEditor from '@/app/components/ContendEditor';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '@/lib/readux/store';
+import { singleArticleEditFetching } from '@/lib/readux/editContent';
 
 export interface PropsContentEdit{
   blogImageUrl?: string;
@@ -12,29 +15,26 @@ export interface PropsContentEdit{
   title?:string;
   description?:string;
   featuredImagealt?:string;
-  _id:string;
+  _id?:string;
 }
 
 const ContentEdit = () => {
-const [contentObj,setContent] = useState<PropsContentEdit>();
-
+  const dispatch = useDispatch<AppDispatch>();
+  
   const { content } = useParams(); // Await params to extract the `content` property
-
+  
   console.log(content); // This will log the `content` from the dynamic route
-  console.log(contentObj); // This will log the `content` from the dynamic route
+  
+  const {article,error,loading} = useSelector((state:RootState)=> state.edit);
+  console.log(article); // This will log the `content` from the dynamic route
+  const [contentObj,setContent] = useState<PropsContentEdit>(article as PropsContentEdit );
 
   useEffect(()=>{
     const response = async ()=>{
      try {
-      const responseforArticle =  await fetch(`/edit/content/api?contentId=${content}&content=Get`);
+      dispatch(singleArticleEditFetching({id:content as string}))
  
-      if (responseforArticle.ok) {
-       const jsonConverted = await responseforArticle.json();
-       console.log(jsonConverted);
-       if (jsonConverted?.data[0]) {
-         setContent(jsonConverted?.data[0])
-       }
-      }
+      
      } catch (error) {
       console.log("Error in Fetching article in the edit:- ", error);
      }
