@@ -2,20 +2,280 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+body{
+    width: 100%;
+    height: 100vh;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer utilities{
+    .lg-label-padding{
+        @apply max-lg:py-1 max-lg:px-2
+    }
+}
+
+.hoverScale{
+    transform: scale(1);
+    transition: transform .2s ease-in-out;
+}
+.hoverScale:hover{
+    transform: scale(1.1);
+}
+
+
+
+.shortCardHover:hover .hoverScale{
+    transform: scale(1.1);
+}
+
+.gradient-overlap-shortBlog{
+    background-image: linear-gradient(to top ,black 20%, rgba(0, 0, 0, 0) 40%);
+}
+
+
+.overflow-auto{
+    overflow: auto;
+}
+
+.markdown-content{
+    padding: 15px;
+    font-size: 18px;
+}
+
+.markdown-content :where(ol>li>p){
+    display: inline;
+}
+.markdown-content :where(ol>li::marker){
+    color: red;
+    font-size: larger;
+    font-weight: 500;
+
+}
+
+
+.markdown-content :where(pre){
+    background-color: #151414;
+    overflow-x: auto;
+    padding: 10px;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 1.1em;
+}
+
+.markdown-content :where(p,h1,h2,h3,h4,h5,h6){
+    margin-top: 1em;
+}
+
+.markdown-content :where(ul li){
+    margin-top: .5em;
+    list-style: disc;
+    font-size: 1em;
+    list-style-position: inside;
+}
+.markdown-content :where(ol li){
+    margin-top: .5em;
+    font-size: 1em;
+    list-style: decimal;
+    list-style-position: inside;
+}
+
+.markdown-content :where(p){
+    font-size: 1em;
+}
+.markdown-content :where(h1){
+    font-weight: 900;
+    font-size: 2em;
+}
+.markdown-content :where(h2){
+    font-weight: 800;
+    font-size: 1.8em;
+}
+.markdown-content :where(h3){
+    font-weight: 900;
+    font-size: 1.6em;
+}
+.markdown-content :where(h4){
+    font-size: 1.5em;
+    font-weight: 900;
+    font-size: x-large;
+}
+.markdown-content :where(h5,h6){
+    font-weight: 900;
+    font-size: x-large;
+}
+
+textarea::-webkit-scrollbar{
+    width: 10px;
+    padding: 5px;
+}
+textarea::-webkit-scrollbar-track{
+    background: #fff;
+}
+textarea::-webkit-scrollbar-thumb{
+    background: #888;
+}
+
+
+.overflow-auto::-webkit-scrollbar {
+    width: 10px; /* Set the width of the scrollbar */
+    padding: 5px;
   }
+  
+  .overflow-auto::-webkit-scrollbar-track {
+    background: #fff; /* Set the background color of the scrollbar track */
+  }
+  
+  .overflow-auto::-webkit-scrollbar-thumb {
+    background: #888; /* Set the background color of the scrollbar thumb */
+  }
+  
+  .overflow-auto::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Set the background color of the scrollbar thumb on hover */
+  }
+
+.markdown-content :where(p):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+    margin-top: 0.5em;
+    margin-bottom: 1em;
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+.markdown-content :where(ul>li, ol>li):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+    margin-top: 0.5em;
+    margin-bottom: 1em;
 }
+
+
+
+/* table featuring styling */
+:root {
+    --table-header-bg: #ccc;
+    --table-border-color: #333;
+    --table-body-bg: #fff;
+    --table-odd-cell-bg: #f9f9f9;
+    --hover-bg: #e0f7fa;
+    --focus-border: #00796b;
+    --cell-padding: 0.75em;
+}
+
+.markdown-content table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+    font-size: 0.9em;
+    line-height: 1.5;
+    text-align: left;
+}
+
+.markdown-content table thead {
+    background-color: var(--table-header-bg);
+    border: 1px solid var(--table-border-color);
+}
+
+.markdown-content table tbody {
+    background-color: var(--table-body-bg);
+}
+
+.markdown-content table th,
+.markdown-content table td {
+    border: 1px solid var(--table-border-color);
+    padding: var(--cell-padding);
+}
+
+.markdown-content table tbody tr:nth-child(odd) td {
+    background-color: var(--table-odd-cell-bg);
+    font-weight: bold;
+}
+
+.markdown-content table tbody tr:nth-child(even) {
+    background-color: #f1f1f1;
+}
+
+.markdown-content table tbody tr:hover {
+    background-color: var(--hover-bg);
+}
+
+.markdown-content table tbody tr:focus {
+    outline: 2px solid var(--focus-border);
+}
+
+.markdown-content table th {
+    text-transform: uppercase;
+    font-size: 0.85em;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+}
+
+
+
+
+.markdown-content :where(h3,h4,h5):not(:where([class~="not-prose"],[class~="not-prose"]*)){
+    font-weight: 700;
+    font-size: large;
+}
+
+/* like to dislikes button comman styling */
+@layer base{
+    .like-dislike-button{
+        @apply bg-pink-400 font-bold p-1 rounded-md;
+    }
+    
+}
+
+
+/* .prose :where(p):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+    margin-top: 1.25em;
+    margin-bottom: 1.25em;
+} */
+
+/* 1em is related to the what is fontsize of parent, if not specified then fontsize of by default will be 16px and so 1em is equal to the 16px and if there is specified 20px or so on , then it will be 20px 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.markdown-content :where(table):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+    width: 100%;
+}
+.markdown-content :where(table>thead, table>thead>tr>th):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+    background-color: gray;
+    border: 1px solid black;
+}
+.markdown-content :where(table>tbody):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+    background-color: white;
+}
+.markdown-content :where(table>tbody>tr):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+    border: 1px solid black;
+    
+}
+.markdown-content :where(table>tbody>tr>td:nth-child(odd)):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+    padding: 0.5em;
+    font-weight: 700;
+}
+
+
+
+
+
+
+
+
+
+
+
+*/
