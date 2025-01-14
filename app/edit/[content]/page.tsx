@@ -30,9 +30,9 @@ const [contentObj,setContent] = useState<PropsContentEdit>();
  
       if (responseforArticle.ok) {
        const jsonConverted = await responseforArticle.json();
-       if (jsonConverted.data[0]) {
+       if (jsonConverted?.data[0]) {
          console.log(jsonConverted);
-         setContent(jsonConverted.data[0])
+         setContent(jsonConverted?.data[0])
        }
       }
      } catch (error) {
