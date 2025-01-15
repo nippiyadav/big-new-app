@@ -225,7 +225,7 @@ export async function GET(req: NextRequest) {
             articles: [
               {
                 $sort: {
-                  createdBy: -1,
+                  createdAt: -1,
                 },
               },
               {
