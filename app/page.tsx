@@ -1,7 +1,7 @@
 "use client";
 
 import BlogContainer from './components/BlogContainer';
-import ShortBlogContainer from './components/ShortBlogContainer';
+// import ShortBlogContainer from './components/ShortBlogContainer';
 import HeroSection from './components/HeroSection';
 import HeroBelowComponents from './components/CategoryComponents';
 import React, { useEffect, useState } from "react";
