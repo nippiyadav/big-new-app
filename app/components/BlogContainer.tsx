@@ -45,7 +45,7 @@ const BlogContainer = ({className="",blogImageUrl,category,slug,createdAt,title,
                         </div>
                         <div>
                             <span className='font-semibold italic hover:underline'>
-                                <Link href="#">Read More</Link>
+                                <Link href={`/category/${category}/${slug}-${_id}`}>Read More</Link>
                             </span>
                         </div>
                     </div>
