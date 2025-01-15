@@ -2,6 +2,9 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import ContentEditor from '@/app/components/ContendEditor';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '@/lib/readux/store';
+import { singleArticleEditFetching } from '@/lib/readux/editContent';
 
 export interface PropsContentEdit {
   blogImageUrl?: string;
@@ -16,6 +19,7 @@ export interface PropsContentEdit {
 }
 
 const ContentEdit = () => {
+  const dispatch = useDispatch<AppDispatch>()
 
   const { content } = useParams(); // Await params to extract the `content` property
 
@@ -23,22 +27,35 @@ const ContentEdit = () => {
 
   const [contentObj, setContent] = useState<PropsContentEdit>();
 
+  const {article,loading,error} = useSelector((state:RootState)=> state.edit);
+
+  console.log(article);
+  
+
+  useEffect(()=> {
+    if (article) {
+      setContent(article as PropsContentEdit)
+    }
+  },[article])
+  
+
 
   useEffect(() => {
     console.log("inside the dedit useEffect");
     
     const response = async () => {
       try {
-        const response = await fetch(`/edit/content/api?contentId=${content}&content=Get`);
+        await dispatch(singleArticleEditFetching({id:content as string}))
+        // const response = await fetch(`/edit/content/api?contentId=${content}&content=Get`);
 
-        if (response.ok) {
-          const jsonConverted = await response.json();
-          console.log(jsonConverted);
-          if (jsonConverted?.data[0]) {
-            setContent(jsonConverted?.data[0])
-          }
+        // if (response.ok) {
+        //   const jsonConverted = await response.json();
+        //   console.log(jsonConverted);
+        //   if (jsonConverted?.data[0]) {
+        //     setContent(jsonConverted?.data[0])
+        //   }
 
-        }
+        // }
       } catch (error) {
         console.log("Error in Fetching article in the edit:- ", error);
       }
@@ -47,7 +64,7 @@ const ContentEdit = () => {
   }, [content])
 
   return (
-    <div>{contentObj ? <ContentEditor {...contentObj} /> : <></>}</div>
+    <div>{contentObj?._id ? <ContentEditor {...contentObj} /> : <></>}</div>
   )
 }
 
