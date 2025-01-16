@@ -26,7 +26,7 @@ const BlogContainer = ({className="",blogImageUrl,category,slug,createdAt,title,
                     </div>
                     <div>
                         {/* /category/ this is redefined because to give a static if we do not does then it will add other route automatically and cause link direct */}
-                        <Link href={`/category/${category}/${slug}-${_id}`}>
+                        <Link href={`/category/${category}/${slug}-${_id}`} title={title}>
                         <h2 className='font-bold text-xl line-clamp-2 hover:underline'>{title && title}</h2>
                         </Link>
                         <p className='line-clamp-2'>{description && description}</p>
@@ -45,7 +45,7 @@ const BlogContainer = ({className="",blogImageUrl,category,slug,createdAt,title,
                         </div>
                         <div>
                             <span className='font-semibold italic hover:underline'>
-                                <Link href={`/category/${category}/${slug}-${_id}`}>Read More</Link>
+                                <Link href={`/category/${category}/${slug}-${_id}`} title={title}>Read More</Link>
                             </span>
                         </div>
                     </div>

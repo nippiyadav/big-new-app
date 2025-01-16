@@ -42,7 +42,7 @@ function BigContainer({ width = "", height = "", className = "",ShowImage,catego
                 </div>
 
                 <div className='absolute text-white font-bold w-full right-0 bottom-0 p-2'>
-                    <Link href={`/category/${category}/${slug}-${_id}`}>
+                    <Link href={`/category/${category}/${slug}-${_id}`} title={title}>
                     <h1 className='text-4xl cursor-pointer hover:underline hover:underline-offset-2 line-clamp-2 leading-[50px] max-md:text-xl max-md:leading-[25px] max-md:line-clamp-1'>{title? slugChangeIntoTitle(title) : "Popular admin template you can use for your business."}</h1>
                     <p className='text-xl line-clamp-1   leading-snug max-md:text-[12px]'>{description && description}</p>
                     </Link>
