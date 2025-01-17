@@ -64,7 +64,13 @@ const ContentEdit = () => {
   }, [content])
 
   return (
-    <div>{contentObj?._id ? <ContentEditor {...contentObj} /> : <></>}</div>
+    <div>
+        {contentObj?._id ? (
+            <ContentEditor {...contentObj} />
+        ) : (
+            <p>Loading or No Article Found</p>
+        )}
+    </div>
   )
 }
 

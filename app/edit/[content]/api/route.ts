@@ -16,8 +16,15 @@ export async function GET(req: NextRequest) {
       await connectToDatabase()
       const response = await ArticleModel.find({ _id: articleId }).lean();
 
-      console.log(response);
+      // console.log(response);
       
+      if (!response[0]._id) {
+        return NextResponse.json({
+          status: 400,
+          message: "We have not found any article related to it",
+          error:"error"
+        });
+      }
 
       if (response[0]._id) {
         return NextResponse.json({

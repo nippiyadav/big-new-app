@@ -43,12 +43,16 @@ export const singleArticleEditFetching = createAsyncThunk<
             if (response.ok) {
                 const jsonConverted = await response.json();
                 console.log(jsonConverted);
-                if (jsonConverted?.data[0]) {
-                    return jsonConverted?.data[0]
+                
+                if (jsonConverted?.data?.length > 0) {
+                    return jsonConverted.data[0]; // Return the first article
+                } else {
+                    console.warn("No data found in API response");
+                    return thunkApi.rejectWithValue("No article found");
                 }
-                else {
-                    return thunkApi.rejectWithValue("Failed to fetch the article");
-                }
+            } else {
+                console.error("API returned an error");
+                return thunkApi.rejectWithValue("Failed to fetch the article");
             }
         } catch (error) {
             console.log("Error in articleSingleFetching", error);
