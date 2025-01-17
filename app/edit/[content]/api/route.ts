@@ -1,3 +1,4 @@
+import { connectToDatabase } from "@/lib/mongodb";
 import { ArticleModel } from "@/model/blog_model";
 import { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
@@ -12,6 +13,7 @@ export async function GET(req: NextRequest) {
 
   if (articleId && content === "Get") {
     try {
+      await connectToDatabase()
       const response = await ArticleModel.find({ _id: articleId }).lean();
 
       console.log(response);
