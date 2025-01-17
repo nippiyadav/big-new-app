@@ -14,11 +14,17 @@ export async function GET(req: NextRequest) {
     try {
       const response = await ArticleModel.find({ _id: articleId }).lean();
 
-      return NextResponse.json({
-        status: 200,
-        message: "Data Got",
-        data: response,
-      });
+      console.log(response);
+      
+
+      if (response[0]._id) {
+        return NextResponse.json({
+          status: 200,
+          message: "Data Got",
+          data: response,
+        });
+      }
+
     } catch (error) {
       return NextResponse.json({
         status: 500,

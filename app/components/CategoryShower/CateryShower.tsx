@@ -17,7 +17,6 @@ const CateryShower = ({data}:{data:categoryFetchedData[]}) => {
         {data.length > 0 && (
           <HeroSection newArticle={data.slice(0, 3)} />)}
 
-
         <div className='grid gap-4 lg:grid-cols-2'>
           {data.slice(3, ).map((elem, index) =>
             <BlogContainer {...elem} key={index} className='' />
