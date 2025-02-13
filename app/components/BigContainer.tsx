@@ -23,9 +23,9 @@ function BigContainer({ width = "", height = "", className = "",ShowImage,catego
     return (
         <section className={`w-full lg:w-[${width}] h-[${height}] ${className}`}>
             <section className={`w-full lg:w-full h-full rounded-md overflow-hidden relative shortCardHover`}>
-                <Image src={ShowImage? ShowImage:`https://mannatthemes.com/blogloo/default/assets/images/blogs/4.jpg`} alt='shortBlog Image' loading='lazy' width={1000} height={1000} 
-                layout="responsive" 
-                quality={100} className='w-full h-full object-cover object-top hoverScale' style={{aspectRatio:"16/9"}} />
+                <Image src={ShowImage? ShowImage:`https://mannatthemes.com/blogloo/default/assets/images/blogs/4.jpg`} alt='shortBlog Image' width={1000} height={1000} 
+                quality={100} 
+                priority={true}className='w-full h-full object-cover object-top hoverScale' style={{aspectRatio:"16/9"}} />
 
                 <div className='absolute right-0 bottom-0  w-full gradient-overlap-shortBlog bg-black/5 h-full' />
 
@@ -63,8 +63,6 @@ export default BigContainer
                 unoptimized
                 layout="responsive" 
                 priority
-                quality={100} className='w-full h-full object-cover object-top hoverScale' style={{aspectRatio:"16/9"}} />
-
-
-                
+                quality={100} className='w-full h-full object-cover object-top hoverScale' style={{aspectRatio:"16/9"}} />         
 */
+

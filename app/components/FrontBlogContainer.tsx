@@ -15,7 +15,7 @@ const FrontBlogContainer = ({width="100px", height="240px",blogImageUrl,createdA
 
   return (
     <div className={` lg:w-[${width}%] h-[${height}] rounded-md overflow-hidden relative shortCardHover `}>
-        <Image src={blogImageUrl} alt='shortBlog Image' width={400} height={400} layout="responsive"   className='w-full h-full object-cover object-top hoverScale' />
+        <Image src={blogImageUrl} alt='shortBlog Image' width={400} height={400}  className='w-full h-full object-cover object-top hoverScale' />
 
         <div className='absolute right-0 bottom-0  w-full gradient-overlap-shortBlog bg-black/5 h-full'/>
 

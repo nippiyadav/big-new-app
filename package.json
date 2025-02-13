@@ -16,6 +16,7 @@
     "groq-sdk": "^0.9.1",
     "jose": "^5.9.6",
     "jsonwebtoken": "^9.0.2",
+    "lucide-react": "^0.475.0",
     "markdown-it": "^14.1.0",
     "marked": "^15.0.4",
     "mongoose": "^8.8.4",

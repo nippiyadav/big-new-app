@@ -185,14 +185,16 @@ const ContentEditor = ({ blogImageUrl, category, slug, content, title, descripti
 
             for await (const chunk of stream) {
                 if (chunk.choices && chunk.choices.length > 0) {
-                    const newContent = chunk.choices[0].delta.content;
-                    // if (!newContent) {
-                    //     return
-                    // }
+                    let newContent = chunk.choices[0].delta.content;
                     console.log(newContent);
-
+                    
                     if (iterationCount > 0) {
                         // console.log(itration);
+                        // if (newContent===undefined) {
+                        //     setAnimation(false);
+                        //     newContent = ""
+                        // }
+                        
                         setNewContent((prevState) => prevState + newContent);
                     } else {
                         // console.log(itration);

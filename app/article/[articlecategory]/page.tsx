@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch ,RootState} from '@/lib/readux/store'
 import { fetchCategories } from '@/lib/readux/categoryFetching';
 import CateryShower from '@/app/components/CategoryShower/CateryShower';
+import LoaderComponents from '@/app/components/LoaderComponents';
 
 const Page = () => {
   const { articlecategory } = useParams();
@@ -20,7 +21,12 @@ const Page = () => {
 
   return (
     <section>
-      {data.length>0 && <CateryShower data={data}/>}
+      {data.length>0? 
+      <CateryShower data={data}/>
+      :
+      <>
+      <LoaderComponents/>
+      </>}
     </section>
   )
 }

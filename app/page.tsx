@@ -11,6 +11,8 @@ import { articleAsyncFetching } from "@/lib/readux/articleFetchSlice";
 
 // typescript
 import { HeroSectionProps } from './components/HeroSection';
+import { Loader2 } from 'lucide-react';
+import LoaderComponents from './components/LoaderComponents';
 // import Header from './components/Header';
 
 const RootPage = () => {
@@ -35,7 +37,8 @@ const RootPage = () => {
 
   return (
     <>
-
+    {fetchedArticle.length>0? 
+    <>
       <main className='lg:max-w-[80%] max-lg:w-[98%] mx-auto flex flex-col gap-4'>
         {/* Header  */}
 
@@ -74,6 +77,13 @@ const RootPage = () => {
         </>
 
       </main>
+    
+    </>
+    :
+    <>
+      <LoaderComponents/>
+    </>}
+
     </>
   )
 }

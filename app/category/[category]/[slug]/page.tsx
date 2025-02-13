@@ -7,6 +7,7 @@ import { AppDispatch, RootState } from "@/lib/readux/store";
 import ArticleShowerComp from '@/app/components/ArticleShowerComponents/ArticleShowerComp';
 import { fetchCategories } from '@/lib/readux/categoryFetching';
 import BlogContainer from '@/app/components/BlogContainer';
+import LoaderComponents from '@/app/components/LoaderComponents';
 
 
 function ArticleShower() {
@@ -47,8 +48,15 @@ useEffect(()=>{
 
   return (
     <>
+    {loading? 
+    <>
+    <LoaderComponents/>
+    </>
+    :
+    <>
+
     <section>
-      {article.map((elem,index)=>
+      {article[0] && article?.map((elem,index)=>
       <ArticleShowerComp key={index} {...elem as SingleArticleProps}/>
       )}
     </section>
@@ -58,6 +66,8 @@ useEffect(()=>{
             <BlogContainer {...elem} key={index} className='' />
           )}
     </section>
+    
+    </>}
     </>
   )
 }

@@ -37,6 +37,11 @@ function Authentication() {
           email: data.email,
           password: data.password,
         }
+
+        if (!formdata.username || !formdata.password || !formdata.email || !formdata.fullname) {
+          return 
+        }
+
         const response = await fetch('/auth/login/api?new=newAccount', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -104,33 +109,37 @@ function Authentication() {
             <Controller
               name='username'
               control={control}
+              rules={{required:{message:"This is required",value:true}}}
               defaultValue=""
-              render={({ field }) =>
-                <Input {...field} name='username' className='' placeholder='Enter Your username..' type='text' lableText='Username' />
+              render={({ field,fieldState:{error} }) =>
+                <Input {...field} errors={error} name='username' className='' placeholder='Enter Your username..' type='text' lableText='Username' />
               }
             />
             <Controller
               name='fullname'
               control={control}
               defaultValue=""
-              render={({ field }) =>
-                <Input {...field} name='fullname' className='' placeholder='Enter Your fullname..' type='text' lableText='Fullname' />
+              rules={{required:{message:"This is required",value:true}}}
+              render={({ field,fieldState:{error} }) =>
+                <Input {...field} errors={error} name='fullname' className='' placeholder='Enter Your fullname..' type='text' lableText='Fullname' />
               }
             />
             <Controller
               name='email'
               control={control}
               defaultValue=""
-              render={({ field }) =>
-                <Input {...field} name='email' type='email' className='' placeholder='Enter Your email..' lableText='Email' />
+              rules={{required:{message:"This is required",value:true},validate:{}}}
+              render={({ field,fieldState:{error} }) =>
+                <Input {...field} errors={error} name='email' type='email' className='' placeholder='Enter Your email..' lableText='Email' />
               }
             />
             <Controller
               name='password'
               control={control}
               defaultValue=""
-              render={({ field }) =>
-                <Input {...field} type='password' name='password' className='' placeholder='Enter Your password..' lableText='Password' />
+              rules={{required:{message:"This is required",value:true}}}
+              render={({ field,fieldState:{error} }) =>
+                <Input {...field} errors={error} type='password' name='password' className='' placeholder='Enter Your password..' lableText='Password' />
               }
             />
           </>)
@@ -141,16 +150,20 @@ function Authentication() {
               name='email'
               control={control}
               defaultValue=""
-              render={({ field }) =>
-                <Input {...field} name='email' type='email' className='' placeholder='Enter Your email..' lableText='Email' />
+              rules={{required:{message:"This is required",value:true}}}
+              render={({ field,fieldState:{error} }) =>
+                <Input {...field}
+              errors={error} name='email' type='email' className='' placeholder='Enter Your email..' lableText='Email' />
               }
             />
             <Controller
               name='password'
               control={control}
+              rules={{required:{message:"This is required",value:true}}}
               defaultValue=""
-              render={({ field }) =>
-                <Input {...field} type='password' name='password' className='' placeholder='Enter Your password..' lableText='Password' />
+              render={({ field,fieldState:{error} }) =>
+                <Input {...field} 
+              errors={error}type='password' name='password' className='' placeholder='Enter Your password..' lableText='Password' />
               }
             />
 
