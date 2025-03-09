@@ -7,6 +7,8 @@ import { useSelector } from 'react-redux';
 import { RootState } from '@/lib/readux/store';
 import Link from 'next/link';
 import NotLoggedINError from '../notLoggedInError';
+import { SendIcon } from 'lucide-react';
+import CommentComponents from '../CommentComponents';
 
 
 const ArticleShowerComp = ({ _id, blogImageUrl, featuredImagealt, content, isLiked, createdBy, likes, dislikes, isDisLiked }: SingleArticleProps) => {
@@ -213,6 +215,8 @@ const ArticleShowerComp = ({ _id, blogImageUrl, featuredImagealt, content, isLik
           dangerouslySetInnerHTML={{ __html: result }}
         />
       </article>
+      {/* commenting features */}
+      <CommentComponents/>
     </section>
   )
 }
