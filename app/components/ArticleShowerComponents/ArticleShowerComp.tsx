@@ -163,6 +163,7 @@ const ArticleShowerComp = ({ _id, blogImageUrl, featuredImagealt, content, isLik
 
       {/* banner of follow name */}
       <div className='px-4 py-2 flex justify-between flex-wrap '>
+        <Link href={`/${createdBy.username}`}>
         <div className='p-2 flex gap-2'>
           <Image src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIf4R5qPKHPNMyAqV-FjS_OTBB8pfUV29Phg&s"} alt='avatar logo' width={100} height={100} className='w-12 h-12 object-cover rounded-full ' />
           <div className='flex flex-col font-bold'>
@@ -170,6 +171,8 @@ const ArticleShowerComp = ({ _id, blogImageUrl, featuredImagealt, content, isLik
             <span className='text-gray-400'>@{createdBy.username}</span>
           </div>
         </div>
+        </Link>
+
         <div className='flex flex-1 gap-2 justify-center min-[444px]:justify-end items-center'>
           <div>
             <button onClick={() => followFun()} className='px-7 py-3 bg-pink-400 font-bold rounded-md shadow-sm relative'>{stateFollower ? "Following" : "Follow"}
@@ -210,12 +213,6 @@ const ArticleShowerComp = ({ _id, blogImageUrl, featuredImagealt, content, isLik
           dangerouslySetInnerHTML={{ __html: result }}
         />
       </article>
-
-      {/* edit button */}
-      {<div className='px-4'>
-        <Link className='px-4 py-2 shadow-md rounded-md bg-orange-400 hover:bg-orange-600 font-bold' href={`/edit/${_id}/`}>Edit</Link>
-      </div>
-      }
     </section>
   )
 }

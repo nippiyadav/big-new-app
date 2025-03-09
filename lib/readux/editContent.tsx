@@ -38,7 +38,7 @@ export const singleArticleEditFetching = createAsyncThunk<
     "fetchArticle/singarticle",
     async (data: { id: string; }, thunkApi) => {
         try {
-            const response = await fetch(`/edit/content/api?contentId=${data.id}&content=Get`);
+            const response = await fetch(`/api/editArticle?contentId=${data.id}&content=Get`);
 
             if (response.ok) {
                 const jsonConverted = await response.json();

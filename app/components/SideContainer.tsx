@@ -10,7 +10,7 @@ interface FrontBlogContainer extends HeroSectionProps{
   className:string
 }
 
-const SideContainer = ({className="",blogImageUrl,category,description,title,createdAt,slug,_id}:FrontBlogContainer) => {
+const SideContainer = ({className="",blogImageUrl,category,description,title,createdAt,slug,_id,createdBy}:FrontBlogContainer) => {
   return (
     <section className={`flex gap-4 rounded-md shadow-md p-2 flex-wrap ${className}`}>
             <div className={`mx-auto min-[768px]:w-[100px] h-[100px] shrink-0 overflow-hidden rounded-md`}>
@@ -31,15 +31,17 @@ const SideContainer = ({className="",blogImageUrl,category,description,title,cre
                 </div>
                 <div>
                     <div className='flex justify-between items-center flex-wrap gap-4'>
+                        <Link href={`/${createdBy.username}`}>
                         <div className='flex gap-2'>
                             <Image src="https://mannatthemes.com/blogloo/default/assets/images/users/avatar-1.jpg" alt="avatar Image" width={100} height={100} className='object-cover w-[22px] h-[22px] rounded-full' />
                             <div className='flex-1 flex justify-around w-full gap-4'>
-                                <span className=' font-semibold text-[12px] italic '>Fitbit Incorporation</span>
+                                <span className=' font-semibold text-[12px] italic '>{createdBy.fullname}</span>
                                 <span className='text-[12px]'>
-                                    San Diego, California
+                                    {`@${createdBy.username}`}
                                 </span>
                             </div>
                         </div>
+                        </Link>
                     
                     </div>
                 </div>
