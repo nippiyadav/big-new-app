@@ -116,15 +116,36 @@ function CommentComponents({ articleId }: CommentComponentsProps) {
     };
 
     const commentLikeButton = async (id: string) => {
+        // my opinion of writting code is that when user click on the like then this will see that is user already have clicked to the dislikes if yes then remove and add like if i click on the like two time then it remove the already present likes
         console.log("Comment:- ", id);
+        // i am modifying comments with the help of setComments
         setComments((prev) => {
+            // newData will be a array which are the transformation array map does transformation on the array
             const newData = prev.map((data, index) => {
+                // this if condition is matching which comment i have to modified, otherwise else will return comment as it is as
                 if (data._id === id) {
-                    return { ...data, likes: [...data.dislikes,id] }
+                    // inner if is checking that is user already clicked theh like button if yes then data.likes.includes(id) code will run
+                    if (data.likes.includes(id)) {
+                        // modifiedLikes is the likes which are the not including id which are present previously
+                        const modifiedLikes =  data.likes.filter((data,index)=> data !== id)
+                        // we are returning the object with modified likes as we know that map is hold all value in the array so when we return object it is originaly will be inside te array
+                        return {...data,likes:modifiedLikes}
+                    }else{
+                        // if modifiedDislikes is hold the array or modified dislike because we are again checking that user is not liked previously , is user already disliked
+                        let modifiedDislikes = [] as string[];
+                        // if user is disliked then it is removed from the dislike array and new array which is not including disliked
+                        if (data.dislikes.includes(id)) {
+                            modifiedDislikes = data.dislikes.filter((data,index)=> data !== id);
+                        }
+                        // this is doing if user did dislikes and it will be removed and new likes wil be added 
+                        return { ...data, likes: [...data.likes,id],dislikes:[...modifiedDislikes] }
+                    }
                 } else {
+                    // this is working to send data as it is as doing nothing with rest of comments
                     return data
                 }
             })
+            // this is modifed comments is being returned
             return newData
         });
 
@@ -134,7 +155,16 @@ function CommentComponents({ articleId }: CommentComponentsProps) {
         setComments((prev) => {
             return prev.map((data, index) => {
                 if (data._id === id) {
-                    return { ...data, dislikes: [...data.dislikes,id] }
+                    if (data.dislikes.includes(id)) {
+                        const modifiedDislikes = data.dislikes.filter((data)=> data !== id);
+                        return {...data, dislikes:modifiedDislikes}
+                    }else{
+                        let modifiedLikes = [] as string[];
+                        if (data.likes.includes(id)) {
+                            modifiedLikes = data.likes.filter((data)=> data !== id)
+                        }
+                        return { ...data, dislikes: [...data.dislikes,id], likes:modifiedLikes }
+                    }
                 } else {
                     return data
                 }
@@ -161,11 +191,11 @@ function CommentComponents({ articleId }: CommentComponentsProps) {
                             <div className='flex gap-2 items-center'>
                                 <span className='flex gap-2 items-center justify-center'>
                                     <ThumbsUp onClick={() => commentLikeButton(data._id as string)} className='hover:text-blue-600 cursor-pointer' />
-                                    <span className='font-bold text-blue-500'>{data.likes}</span>
+                                    <span className='font-bold text-blue-500'>{data.likes.length}</span>
                                 </span>
                                 <span className='flex gap-2 items-center justify-center'>
                                     <ThumbsDown onClick={() => commentDisLikeButton(data._id as string)} className='hover:text-red-600 cursor-pointer' />
-                                    <span className='font-bold text-red-500 mb-2'>{data.dislikes}</span>
+                                    <span className='font-bold text-red-500 mb-2'>{data.dislikes.length}</span>
                                 </span>
                             </div>
                         </div>
