@@ -216,7 +216,7 @@ const ArticleShowerComp = ({ _id, blogImageUrl, featuredImagealt, content, isLik
         />
       </article>
       {/* commenting features */}
-      <CommentComponents/>
+      <CommentComponents articleId={_id}/>
     </section>
   )
 }

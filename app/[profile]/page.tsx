@@ -104,7 +104,7 @@ function ProfilePage() {
             dispatch(addingNewArticle(responseJson.data));
 
             setCategoryArticles((prev)=>{
-                const copyPrev = [...prev];
+                // const copyPrev = [...prev];
                 const newArticle = [...prev,...responseJson.data]
                 return newArticle
             });
