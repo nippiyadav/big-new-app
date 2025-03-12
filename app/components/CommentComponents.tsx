@@ -116,8 +116,12 @@ function CommentComponents({ articleId }: CommentComponentsProps) {
     };
 
     const commentLikeButton = async (id: string) => {
+
         // my opinion of writting code is that when user click on the like then this will see that is user already have clicked to the dislikes if yes then remove and add like if i click on the like two time then it remove the already present likes
         console.log("Comment:- ", id);
+        if (!id) {
+            return;
+        }
         // i am modifying comments with the help of setComments
         setComments((prev) => {
             // newData will be a array which are the transformation array map does transformation on the array
@@ -149,9 +153,29 @@ function CommentComponents({ articleId }: CommentComponentsProps) {
             return newData
         });
 
+        try {
+            const response = await fetch("/api/comment/likesComment",{
+                headers:{
+                    "Content-Type":"application/json"
+                },
+                method:"POST",
+                body:JSON.stringify({id})
+            });
+            const responseJson = await response.json();
+            console.log("responseJson:- ",responseJson);
+        } catch (error) {
+            console.log("Error in Comment-Like-Button:- ",error);
+        }
+
     }
 
     const commentDisLikeButton = async (id: string) => {
+        if (!id) {
+            console.log("id is not present");
+            
+            return
+        };
+
         setComments((prev) => {
             return prev.map((data, index) => {
                 if (data._id === id) {
@@ -169,7 +193,23 @@ function CommentComponents({ articleId }: CommentComponentsProps) {
                     return data
                 }
             })
-        })
+        });
+
+        try {
+            const response = await fetch("/api/comment/dislikesComment",{
+                headers:{
+                    "Content-Type":"application/json"
+                },
+                method:"POST",
+                body:JSON.stringify({id})
+            });
+            const responseJson = await response.json();
+            console.log("responseJosn:- ",responseJson);
+        } catch (error) {
+            console.log("Error in the dislike of comment");
+            
+        }
+
     }
 
     return (

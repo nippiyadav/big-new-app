@@ -4,8 +4,8 @@ export interface CommentsProps {
     blog: mongoose.Schema.Types.ObjectId;
     user: mongoose.Schema.Types.ObjectId;
     text: string;
-    likes: mongoose.Schema.Types.ObjectId;
-    dislikes: mongoose.Schema.Types.ObjectId;
+    likes: [mongoose.Types.ObjectId];
+    dislikes: [mongoose.Types.ObjectId];
 }
 
 const CommentModels = new Schema<CommentsProps>({
